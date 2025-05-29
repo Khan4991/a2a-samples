@@ -3,8 +3,9 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . .
 
-RUN pip install uv
+# Install dependencies - httpx is missing
+RUN pip install mesop httpx
 
 EXPOSE 8080
 
-CMD uv run demo/ui/main.py --host=0.0.0.0 --port=${PORT:-8080}
+CMD ["python", "demo/ui/main.py"]

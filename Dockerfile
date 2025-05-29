@@ -3,14 +3,13 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . .
 
-# Install dependencies based on what's available
 RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; \
     elif [ -f "pyproject.toml" ]; then pip install uv && uv sync; \
     else pip install mesop httpx; fi
 
 EXPOSE 8080
 
-ENV A2A_UI_HOST=0.0.0.0
-ENV A2A_UI_PORT=8080
+# Cloud Run sets PORT environment variable
+ENV HOST=0.0.0.0
 
-CMD ["python", "demo/ui/main.py"]
+CMD ["python", "-m", "mesop.cli.main", "demo/ui/main.py", "--host=0.0.0.0", "--port=${PORT:-8080}"]

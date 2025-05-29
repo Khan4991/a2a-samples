@@ -4,7 +4,6 @@ WORKDIR /app
 COPY . .
 
 RUN pip install uv
-RUN uv sync
 
 EXPOSE 8080
 

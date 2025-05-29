@@ -186,7 +186,7 @@ if __name__ == '__main__':
 
     # Setup the connection details, these should be set in the environment
     host = os.environ.get('A2A_UI_HOST', '0.0.0.0')
-    port = int(os.environ.get('A2A_UI_PORT', '12000'))
+    port = port = int(os.environ.get('PORT', os.environ.get('A2A_UI_PORT', '12000')))
 
     # Set the client to talk to the server
     host_agent_service.server_url = f'http://{host}:{port}'

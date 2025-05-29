@@ -3,9 +3,9 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . .
 
-# Install dependencies - httpx is missing
-RUN pip install mesop httpx
+# Install uv
+RUN pip install uv
 
 EXPOSE 8080
 
-CMD ["python", "demo/ui/main.py"]
+CMD ["uv", "run", "demo/ui/main.py"]
